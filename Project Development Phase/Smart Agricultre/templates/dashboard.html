@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Smart Agriculture Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+
+<div class="container mt-5">
+
+<div class="card shadow p-4">
+
+    <h2 class="text-success">Welcome {{ user }}</h2>
+    <p>You have successfully logged in to the Smart Agriculture System.</p>
+
+    <hr>
+
+    <!-- CARDS -->
+    <div class="row text-center">
+
+        <div class="col-md-4">
+            <div class="p-3 border rounded bg-white">
+                <h5>🌦 Weather</h5>
+                <p>Check climate conditions</p>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="p-3 border rounded bg-white">
+                <h5>🌱 Crops</h5>
+                <p>Recommended crops info</p>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="p-3 border rounded bg-white">
+                <h5>💧 Soil</h5>
+                <p>Moisture & fertility data</p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- FORM -->
+    <form action="/predict" method="POST" class="mt-4">
+
+        <input type="text" name="nitrogen" placeholder="Nitrogen" class="form-control mb-2">
+        <input type="text" name="phosphorus" placeholder="Phosphorus" class="form-control mb-2">
+        <input type="text" name="potassium" placeholder="Potassium" class="form-control mb-2">
+
+        <input type="text" name="temperature" placeholder="Temperature" class="form-control mb-2">
+        <input type="text" name="humidity" placeholder="Humidity" class="form-control mb-2">
+        <input type="text" name="ph" placeholder="pH" class="form-control mb-2">
+        <input type="text" name="rainfall" placeholder="Rainfall" class="form-control mb-2">
+
+        <button type="submit" class="btn btn-success w-100">
+            Predict Crop
+        </button>
+
+    </form>
+
+    <!-- RESULT -->
+    {% if prediction %}
+    <div class="mt-4 p-3 border rounded bg-warning text-dark text-center">
+        <h4>🌾 Prediction Result: {{ prediction }}</h4>
+    </div>
+    {% endif %}
+
+    <!-- LOGOUT -->
+    <div class="mt-4 text-end">
+        <a href="/logout" class="btn btn-danger">Logout</a>
+    </div>
+
+</div>
+
+</div>
+
+</body>
+</html>
